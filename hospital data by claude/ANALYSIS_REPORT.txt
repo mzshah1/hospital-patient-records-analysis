@@ -1,0 +1,105 @@
+
+HOSPITAL PATIENT RECORDS - DETAILED ANALYSIS REPORT
+================================================================================
+
+PATIENT POPULATION INSIGHTS
+--------------------------------------------------------------------------------
+Total Patients: 974
+Age Range: 34.8 - 104.5 years
+Median Age: 76.3 years
+Average Age: 74.5 years
+
+Mortality Analysis:
+  - Deceased: 154 (15.8%)
+  - Living: 820 (84.2%)
+  - Highest mortality age group: 80+ (27.5%)
+
+HEALTHCARE UTILIZATION
+--------------------------------------------------------------------------------
+Total Encounters: 27,891
+Avg Encounters per Patient: 28.6
+Median Encounters per Patient: 14
+Max Encounters (single patient): 1381
+
+Encounter Type Breakdown:
+encounter_class
+ambulatory    12537
+outpatient     6300
+urgentcare     3666
+emergency      2322
+wellness       1931
+inpatient      1135
+
+Total Procedures: 47,701
+Avg Procedures per Patient: 49.0
+Avg Procedures per Encounter: 1.7
+
+FINANCIAL ANALYSIS
+--------------------------------------------------------------------------------
+Total Healthcare Costs: $101,514,375.52
+Average Cost per Encounter: $3,639.68
+Average Cost per Procedure: $2,212.06
+Average Cost per Patient: $104,224.20
+
+Cost Distribution:
+  - Top 10% of encounters account for: 66.6% of total costs
+  - Top 1% of encounters account for: 14.5% of total costs
+
+Most Expensive Encounter Type:
+  inpatient: $7,761.35
+
+Least Expensive Encounter Type:
+  outpatient: $2,237.30
+
+HIGH-RISK PATIENT INDICATORS
+--------------------------------------------------------------------------------
+Patients in Highest Risk Quintile (Q5):
+  - Count: 10
+  - Avg Encounters: 80.9
+  - Avg Total Cost: $621,020.73
+  - Avg Age: 82.2
+  - Mortality Rate: 70.0%
+
+Patients with Multiple Emergency Visits:
+  - Count: 252
+  - Avg Cost per Patient: $206,986.41
+
+Patients with Inpatient Admissions:
+  - Count: 153
+  - Avg Inpatient Encounters per Admission Pt: 7.4
+
+PROCEDURE INSIGHTS
+--------------------------------------------------------------------------------
+Procedures with Documented Reason: 10,756 (22.5%)
+Procedures without Documented Reason: 36,945 (77.5%)
+
+Top 5 Most Common Procedures:
+code
+710824005          4596
+385763009          4098
+171207006          3804
+454711000124102    3614
+428211000124100    2906
+
+KEY FINDINGS & RECOMMENDATIONS
+--------------------------------------------------------------------------------
+1. AGING POPULATION: Mean age of 74.5 years indicates elderly patient population with higher
+   healthcare needs and costs. Recommend geriatric care optimization programs.
+
+2. COST CONCENTRATION: High cost concentration in top encounters suggests opportunity for
+   high-risk patient management programs to reduce outlier costs.
+
+3. MORTALITY-RISK CORRELATION: Clear correlation between risk score and mortality rates
+   suggests risk stratification model could improve outcomes through targeted interventions.
+
+4. EMERGENCY UTILIZATION: 465 patients (47.7%)
+   have emergency encounters. Recommend primary care access improvements.
+
+5. DOCUMENTATION GAP: 77.5% of procedures lack documented reason codes.
+   Recommend coding audit and process improvement.
+
+6. INPATIENT CONCENTRATION: ICU admissions represent highest cost encounters.
+   Recommend review of admission criteria and length-of-stay optimization.
+
+================================================================================
+Analysis completed at: 2026-09-23 16:47:04

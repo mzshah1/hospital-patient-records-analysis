@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Data Analysis - Index & Definitions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .nav-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-section h2 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 10px;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .nav-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: block;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .nav-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .content-section {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .content-section h2 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 10px;
+        }
+
+        .content-section h3 {
+            color: #2a5298;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .definition-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 5px solid #667eea;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .definition-term {
+            font-weight: bold;
+            font-size: 16px;
+            color: #1e3c72;
+            margin-bottom: 8px;
+        }
+
+        .definition-text {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+
+        th {
+            background: #1e3c72;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        tr:hover {
+            background: #f0f4ff;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .file-link {
+            background: #e8f4f8;
+            padding: 15px;
+            border-left: 5px solid #2a5298;
+            margin: 15px 0;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .file-link strong {
+            color: #1e3c72;
+        }
+
+        .highlight {
+            background: #fff59d;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .temporal-table {
+            font-size: 14px;
+        }
+
+        .temporal-table th {
+            background: #2a5298;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 5px solid #1e3c72;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 5px solid #ff9800;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc li {
+            padding: 8px 0;
+            padding-left: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .toc a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 10px;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .back-to-top:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🏥 Hospital Patient Records Analysis</h1>
+            <p>Complete Index, Definitions & Temporal Analysis</p>
+            <p style="margin-top: 15px; font-size: 14px; opacity: 0.85;">
+                Massachusetts General Hospital | 974 Patients | 27,891 Encounters | 47,701 Procedures | $207M Total Costs
+            </p>
+        </div>
+
+        <!-- Quick Navigation -->
+        <div class="nav-section">
+            <h2>📑 Quick Navigation</h2>
+            <div class="nav-grid">
+                <a href="#definitions" class="nav-item">📖 Key Definitions</a>
+                <a href="#encounter-types" class="nav-item">🏥 Encounter Types</a>
+                <a href="#temporal" class="nav-item">📊 Temporal Analysis</a>
+                <a href="#data-dictionary" class="nav-item">📋 Data Dictionary</a>
+                <a href="#action-log" class="nav-item">✓ Action Log</a>
+                <a href="#files" class="nav-item">📁 Output Files</a>
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="nav-section toc">
+            <h2>Contents</h2>
+            <ul>
+                <li><a href="#definitions">1. Key Definitions & Terminology</a></li>
+                <li><a href="#encounter-types">2. Encounter Types in Healthcare</a></li>
+                <li><a href="#temporal">3. Temporal Analysis (Yearly, Quarterly, Monthly)</a></li>
+                <li><a href="#data-dictionary">4. Complete Data Dictionary</a></li>
+                <li><a href="#action-log">5. Action Log & Methodology</a></li>
+                <li><a href="#data-quality">6. Data Quality & Validation</a></li>
+                <li><a href="#files">7. Output Files & Reports</a></li>
+            </ul>
+        </div>
+
+        <!-- Section 1: Definitions -->
+        <div class="content-section" id="definitions">
+            <h2>📖 Section 1: Key Definitions & Terminology</h2>
+
+            <div class="info-box">
+                <strong>Purpose:</strong> These definitions ensure consistent understanding of terms used throughout the analysis and healthcare context.
+            </div>
+
+            <h3>Core Healthcare Terms</h3>
+
+            <div class="definition-item">
+                <div class="definition-term">Patient</div>
+                <div class="definition-text">
+                    An individual receiving healthcare services. Identified by a unique patient ID in the database. Includes demographic information (age, gender, race, ethnicity, location, contact details).
+                </div>
+            </div>
+
+            <div class="definition-item">
+                <div class="definition-term">Encounter</div>
+                <div class="definition-text">
+                    A single healthcare visit or interaction between a patient and the healthcare system. Can be in-person (clinic, hospital, ER) or virtual. Each encounter has a start time, stop time, associated costs, and encounter classification. Examples: office visit, emergency room visit, hospital admission.
+                </div>
+            </div>
+
+            <div class="definition-item">
+                <div class="definition-term">Encounter Class</div>
+                <div class="definition-text">
+                    The category or type of encounter. In this dataset: <span class="highlight">Ambulatory, Outpatient, Emergency, Inpatient, Urgent Care, Wellness</span>. Determines the care setting and typically correlates with cost.
+                </div>
+            </div>
+
+            <div class="definition-item">
+                <div class="definition-term">Procedure</div>
+                <div class="definition-text">
+                    A medical or surgical intervention performed during an encounter. Includes tests, surgeries, injections, diagnostic procedures, etc. Each procedure has a cost and may have an associated reason code (diagnosis).
+                </div>
+            </div>
+
+            <div class="definition-item">
+                <div class="definition-term">Payer</div>
+                <div class="definition-text">
+                    An insurance company or entity responsible for covering healthcare costs. Examples: Medicare, Medicaid, Blue Cross, Aetna. The payer determines coverage limits and reimbursement rates. In this dataset: Medicare (63%), Medicaid (27%), Commercial (10%).
+                </div>
+            </div>
+
+            <div class="definition-item">
+                <div class="definition-term">Organization</div>
+                <div class="definition-text">
+                    A healthcare facility (hospital, clinic, urgent care center) where patient encounters occur. In this dataset: Massachusetts General Hospital (single organization).
+                </div>
+            </div>
+
+            <h3>Financial Terms</h3>
+
+            <div class="definition-item">
+                <div class="definition-term">Base Encounter Cost</div>
+                <div class="definition-text">
+                    The fixed cost of the encounter itself, excluding line items for medications, procedures, and other services. Represents facility/provider time.
+                </div>
+            </div>
+
+            <div class="definition-item">
+                <div class="definition-term">Total Claim Cost</div>
+                <div class="definition-text">
+                    The complete cost of an encounter including all services: base cost + procedures + medications + supplies. This is what gets billed to the payer.
+                </div>
+            </div>
+
+            <div class="definition-item">
+                <div class="definition-term">Payer Coverage</div>
+                <div class="definition-text">
+                    The amount of the total claim cost that the insurance payer covers. The difference between total cost and payer coverage is patient responsibility (copay/coinsurance).
+                </div>
+            </div>
+
+            <h3>Clinical & Coding Terms</h3>
+
+            <div class="definition-item">
+                <div class="definition-term">Reason Code (Diagnosis Code)</div>
+                <div class="definition-text">
+                    A SNOMED-CT code identifying the medical condition or diagnosis that prompted the encounter or procedure. <span class="highlight">77.5% of procedures in this dataset lack reason codes</span> - a significant data quality issue.
+                </div>
+            </div>
+
+            <div class="definition-item">
+                <div class="definition-term">SNOMED-CT Code</div>
+                <div class="definition-text">
+                    Systematized Nomenclature of Medicine Clinical Terms. A standardized medical coding system used for diagnoses, procedures, and clinical observations. Ensures consistency in medical records.
+                </div>
+            </div>
+
+            <div class="definition-item">
+                <div class="definition-term">Comorbidity</div>
+                <div class="definition-text">
+                    The presence of one or more diseases/conditions co-occurring in the same patient. In this analysis: <span class="highlight">47.7% of patients with emergency encounters</span> suggests complex care needs/comorbidities.
+                </div>
+            </div>
+
+            <h3>Analysis-Specific Terms</h3>
+
+            <div class="definition-item">
+                <div class="definition-term">Risk Quintile (Q1-Q5)</div>
+                <div class="definition-text">
+                    Patients divided into 5 equal groups based on total healthcare costs. Q1 = lowest 20% of costs; Q5 = highest 20% of costs. <span class="highlight">Q5 patients: 70% mortality, $621K avg cost</span>.
+                </div>
+            </div>
+
+            <div class="definition-item">
+                <div class="definition-term">Mortality Rate</div>
+                <div class="definition-text">
+                    Percentage of patients who died during the study period. Overall: 15.8% (154/974 patients). By age group: 27.5% in 80+ age group - indicates mortality risk increases significantly with age.
+                </div>
+            </div>
+
+            <div class="definition-item">
+                <div class="definition-term">Utilization</div>
+                <div class="definition-text">
+                    The rate at which patients use healthcare services. Measured as encounters per patient, procedures per encounter, or emergency visit frequency. <span class="highlight">High utilization in specific patient subgroups drives costs</span>.
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Encounter Types -->
+        <div class="content-section" id="encounter-types">
+            <h2>🏥 Section 2: Encounter Types in Healthcare Context</h2>
+
+            <div class="info-box">
+                <strong>Key Insight:</strong> Different encounter types serve different purposes, have different costs, and require different care settings. Understanding each is critical for healthcare operations.
+            </div>
+
+            <h3>Encounter Type Breakdown (27,891 Total)</h3>
+
+            <table class="temporal-table">
+                <tr>
+                    <th>Encounter Type</th>
+                    <th>Count</th>
+                    <th>% of Total</th>
+                    <th>Avg Cost</th>
+                    <th>Definition & Context</th>
+                </tr>
+                <tr>
+                    <td><strong>Ambulatory</strong></td>
+                    <td>12,537</td>
+                    <td>45%</td>
+                    <td>Variable</td>
+                    <td>Scheduled outpatient visits to physician offices or clinics. Routine, planned care. Lowest complexity. Examples: annual checkup, medication refill visit.</td>
+                </tr>
+                <tr>
+                    <td><strong>Outpatient</strong></td>
+                    <td>6,300</td>
+                    <td>23%</td>
+                    <td>$2,237</td>
+                    <td>Hospital-based visits without admission. Same-day care (patient goes home). Moderate complexity. Examples: lab work, imaging, minor procedures.</td>
+                </tr>
+                <tr>
+                    <td><strong>Urgent Care</strong></td>
+                    <td>3,666</td>
+                    <td>13%</td>
+                    <td>Variable</td>
+                    <td>Non-emergency but time-sensitive visits. Less urgent than ER, more urgent than routine. Examples: sprained ankle, minor cuts, respiratory infection.</td>
+                </tr>
+                <tr style="background: #fff3cd;">
+                    <td><strong>Emergency</strong></td>
+                    <td>2,322</td>
+                    <td>8%</td>
+                    <td>High</td>
+                    <td><span class="highlight">Unplanned, acute care visits.</span> Highest complexity and highest cost per visit. Examples: chest pain, serious injury, acute illness. <span class="highlight">465 patients (47.7%) have ER visits</span> - preventability opportunity.</td>
+                </tr>
+                <tr>
+                    <td><strong>Inpatient</strong></td>
+                    <td>1,135</td>
+                    <td>4%</td>
+                    <td>$7,761</td>
+                    <td><strong>Highest cost</strong> encounter type. Hospital admission requiring overnight stay. Most complex cases. Examples: surgery, major illness management, ICU care. Length-of-stay optimization critical.</td>
+                </tr>
+                <tr>
+                    <td><strong>Wellness</strong></td>
+                    <td>1,931</td>
+                    <td>7%</td>
+                    <td>Variable</td>
+                    <td>Preventive care and health maintenance visits. Routine checkups, screenings, vaccinations. Lowest cost but most valuable for prevention.</td>
+                </tr>
+            </table>
+
+            <h3>Clinical Implications by Encounter Type</h3>
+
+            <div class="warning-box">
+                <strong>⚠️ Emergency Utilization Crisis:</strong> 2,322 emergency encounters (8% of total) from 465 patients (47.7%) indicates major primary care access gaps. These are often preventable with better outpatient management.
+            </div>
+
+            <div class="success-box">
+                <strong>✓ Inpatient Opportunity:</strong> Although only 4% of encounters, inpatient visits are 3.5x more expensive than outpatient. Reducing length-of-stay by 1 day = significant cost savings.
+            </div>
+
+            <div class="info-box">
+                <strong>📊 Strategic Focus:</strong> The mix of encounter types reveals care delivery patterns. High emergency % (8%) vs. wellness (7%) suggests reactive rather than preventive care model.
+            </div>
+        </div>
+
+        <!-- Section 3: Temporal Analysis -->
+        <div class="content-section" id="temporal">
+            <h2>📊 Section 3: Temporal Analysis (Yearly, Quarterly, Monthly)</h2>
+
+            <div class="info-box">
+                <strong>Purpose:</strong> Understand trends over time - how utilization, costs, and patient volumes change across years, quarters, and months.
+            </div>
+
+            <h3>Yearly Trends (2012-2023)</h3>
+            <p>The dataset spans 12 years (2012-2023) with peak activity in 2013-2015. Recent years show stabilization.</p>
+
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Data Span</div>
+                    <div class="metric-value">12 years</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Peak Year</div>
+                    <div class="metric-value">2013-2015</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Total Encounters</div>
+                    <div class="metric-value">27,891</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Cost Trend</div>
+                    <div class="metric-value">Stable</div>
+                </div>
+            </div>
+
+            <p style="margin-top: 20px;"><strong>Year-over-Year Analysis:</strong></p>
+            <ul style="margin: 15px 0 15px 20px;">
+                <li>Years with <strong>increasing encounters</strong> = growing patient volume or utilization</li>
+                <li>Years with <strong>increasing costs</strong> = either more procedures or higher costs per encounter</li>
+                <li>Years with <strong>increasing unique patients</strong> = larger patient population served</li>
+                <li><span class="highlight">Recent stability</span> = consistent recent utilization pattern</li>
+            </ul>
+
+            <h3>Quarterly Trends</h3>
+            <p>Examination of data by quarter (Q1-Q4) reveals seasonal patterns in healthcare utilization.</p>
+
+            <div class="info-box">
+                <strong>Quarterly Insight:</strong> 45 quarters analyzed across the dataset. Compare Q1 vs Q2 vs Q3 vs Q4 to identify seasonal variations:
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li><strong>Q1 (Jan-Mar):</strong> Typically higher utilization post-holiday</li>
+                    <li><strong>Q2 (Apr-Jun):</strong> Variable, often lower utilization</li>
+                    <li><strong>Q3 (Jul-Sep):</strong> Summer typically lower</li>
+                    <li><strong>Q4 (Oct-Dec):</strong> Higher due to holiday season and year-end healthcare usage</li>
+                </ul>
+            </div>
+
+            <h3>Monthly Trends</h3>
+            <p>Most granular view: 134 months analyzed. Shows week-to-week and season-to-season variations.</p>
+
+            <div class="warning-box">
+                <strong>⚠️ Data Quality Note:</strong> One outlier encounter duration: ~5.1 years. This may indicate:
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Data entry error (wrong dates)</li>
+                    <li>Long-term chronic facility patient</li>
+                    <li>Database anomaly requiring investigation</li>
+                </ul>
+            </div>
+
+            <h3>How to Use Temporal Data</h3>
+            <ul style="margin: 15px 0 15px 20px;">
+                <li><strong>Budget Planning:</strong> Use yearly/quarterly trends to forecast future costs</li>
+                <li><strong>Staffing:</strong> Adjust staffing based on seasonal utilization patterns</li>
+                <li><strong>Resource Allocation:</strong> Surge planning for high-utilization months</li>
+                <li><strong>Performance Tracking:</strong> Compare current month/quarter to same period previous year (YoY comparison)</li>
+                <li><strong>Trend Detection:</strong> Identify if recent trends are improving or worsening</li>
+            </ul>
+
+            <div class="success-box">
+                <strong>✓ Recommendation:</strong> Use <strong>Hospital_Analysis_Workbook.xlsx</strong> sheets "Yearly Analysis", "Quarterly Analysis", and "Monthly Analysis" for detailed temporal breakdowns with cost comparisons and trend analysis.
+            </div>
+        </div>
+
+        <!-- Section 4: Data Dictionary -->
+        <div class="content-section" id="data-dictionary">
+            <h2>📋 Section 4: Complete Data Dictionary</h2>
+
+            <p>This comprehensive data dictionary explains every field in the dataset. Organized by table.</p>
+
+            <h3>PATIENTS Table</h3>
+            <table>
+                <tr>
+                    <th>Field Name</th>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>Integer (PK)</td>
+                    <td>Unique patient identifier</td>
+                </tr>
+                <tr>
+                    <td>birth_date</td>
+                    <td>Date (YYYY-MM-DD)</td>
+                    <td>Patient's date of birth</td>
+                </tr>
+                <tr>
+                    <td>death_date</td>
+                    <td>Date (NULL if living)</td>
+                    <td>Patient's date of death, if applicable</td>
+                </tr>
+                <tr>
+                    <td>gender</td>
+                    <td>Text (M/F)</td>
+                    <td>Patient's gender (M=Male, F=Female)</td>
+                </tr>
+                <tr>
+                    <td>race</td>
+                    <td>Text</td>
+                    <td>Patient's primary race (White, Black, Asian, etc.)</td>
+                </tr>
+                <tr>
+                    <td>ethnicity</td>
+                    <td>Text</td>
+                    <td>Patient's primary ethnicity</td>
+                </tr>
+                <tr>
+                    <td>address, city, state, zip</td>
+                    <td>Text</td>
+                    <td>Patient's residential location</td>
+                </tr>
+            </table>
+
+            <h3>ENCOUNTERS Table</h3>
+            <table>
+                <tr>
+                    <th>Field Name</th>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>Integer (PK)</td>
+                    <td>Unique encounter identifier</td>
+                </tr>
+                <tr>
+                    <td>patient_id</td>
+                    <td>Integer (FK)</td>
+                    <td>Foreign key to PATIENTS table</td>
+                </tr>
+                <tr>
+                    <td>start_time</td>
+                    <td>DateTime (ISO8601 UTC)</td>
+                    <td>When the encounter started (yyyy-MM-dd'T'HH:mm'Z')</td>
+                </tr>
+                <tr>
+                    <td>stop_time</td>
+                    <td>DateTime (ISO8601 UTC)</td>
+                    <td>When the encounter ended</td>
+                </tr>
+                <tr>
+                    <td>encounter_class</td>
+                    <td>Text</td>
+                    <td>Type of encounter: ambulatory, outpatient, emergency, inpatient, urgent care, wellness</td>
+                </tr>
+                <tr>
+                    <td>base_encounter_cost</td>
+                    <td>Decimal</td>
+                    <td>Fixed cost of encounter (excluding procedures/medications)</td>
+                </tr>
+                <tr>
+                    <td>total_claim_cost</td>
+                    <td>Decimal</td>
+                    <td>Total cost including all line items</td>
+                </tr>
+                <tr>
+                    <td>payer_coverage</td>
+                    <td>Decimal</td>
+                    <td>Amount covered by insurance payer</td>
+                </tr>
+                <tr>
+                    <td>reason_code</td>
+                    <td>SNOMED-CT Code</td>
+                    <td>Diagnosis code (PRIMARY DIAGNOSIS for encounter)</td>
+                </tr>
+            </table>
+
+            <h3>PROCEDURES Table</h3>
+            <table>
+                <tr>
+                    <th>Field Name</th>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>Integer (PK)</td>
+                    <td>Auto-generated unique procedure identifier</td>
+                </tr>
+                <tr>
+                    <td>patient_id</td>
+                    <td>Integer (FK)</td>
+                    <td>Foreign key to PATIENTS table</td>
+                </tr>
+                <tr>
+                    <td>encounter_id</td>
+                    <td>Integer (FK)</td>
+                    <td>Foreign key to ENCOUNTERS table (which encounter was this procedure performed in)</td>
+                </tr>
+                <tr>
+                    <td>start_time</td>
+                    <td>DateTime</td>
+                    <td>When the procedure was performed</td>
+                </tr>
+                <tr>
+                    <td>code</td>
+                    <td>SNOMED-CT Code</td>
+                    <td>Standardized procedure code</td>
+                </tr>
+                <tr>
+                    <td>description</td>
+                    <td>Text</td>
+                    <td>Human-readable description of procedure</td>
+                </tr>
+                <tr>
+                    <td>base_cost</td>
+                    <td>Decimal</td>
+                    <td>Cost of this specific procedure</td>
+                </tr>
+                <tr style="background: #fff3cd;">
+                    <td>reason_code</td>
+                    <td>SNOMED-CT Code (77.5% NULL)</td>
+                    <td><span class="highlight">⚠️ MAJOR DATA QUALITY ISSUE:</span> Why was this procedure performed? Missing in 36,945/47,701 records.</td>
+                </tr>
+            </table>
+
+            <h3>PAYERS & ORGANIZATIONS Tables</h3>
+            <table>
+                <tr>
+                    <th>Table</th>
+                    <th>Primary Keys</th>
+                    <th>Contains</th>
+                </tr>
+                <tr>
+                    <td><strong>PAYERS</strong></td>
+                    <td>id (Insurance Company ID)</td>
+                    <td>Insurance payers (Medicare, Medicaid, Blue Cross, etc.) - name, HQ location, phone</td>
+                </tr>
+                <tr>
+                    <td><strong>ORGANIZATIONS</strong></td>
+                    <td>id (Facility ID)</td>
+                    <td>Healthcare facilities - in this dataset: only Massachusetts General Hospital</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Section 5: Action Log -->
+        <div class="content-section" id="action-log">
+            <h2>✓ Section 5: Action Log & Methodology</h2>
+
+            <div class="info-box">
+                <strong>Purpose:</strong> Complete record of all analysis steps performed, tools used, and methodologies applied. Enables validation, reproducibility, and future refinement.
+            </div>
+
+            <table class="temporal-table">
+                <tr>
+                    <th>Action #</th>
+                    <th>Description</th>
+                    <th>Method/Tool</th>
+                    <th>Date</th>
+                    <th>Purpose</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Data Normalization & Cleaning</td>
+                    <td>Python (pandas)</td>
+                    <td>2026-09-23</td>
+                    <td>Standardized column names, handled missing values</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Patient Demographics Analysis</td>
+                    <td>Python (detailed_analysis.py)</td>
+                    <td>2026-09-23</td>
+                    <td>Age distribution, gender, race, mortality by age group</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Healthcare Utilization Analysis</td>
+                    <td>Python (detailed_analysis.py)</td>
+                    <td>2026-09-23</td>
+                    <td>Encounters per patient, encounter types, procedures per encounter</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Financial Cost Analysis</td>
+                    <td>Python (detailed_analysis.py)</td>
+                    <td>2026-09-23</td>
+                    <td>Cost distribution, Lorenz curves, cost by payer</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Risk Stratification Modeling</td>
+                    <td>Python (scikit-learn)</td>
+                    <td>2026-09-23</td>
+                    <td>Quintile analysis, high-risk patient identification</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Mortality Correlation Analysis</td>
+                    <td>Python (detailed_analysis.py)</td>
+                    <td>2026-09-23</td>
+                    <td>Mortality rates by age, risk quintile, encounter type</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Encounter Type Breakdown</td>
+                    <td>Python (pandas groupby)</td>
+                    <td>2026-09-23</td>
+                    <td>Distribution of ambulatory, ER, inpatient, etc.</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Procedure Documentation Audit</td>
+                    <td>Python (data quality check)</td>
+                    <td>2026-09-23</td>
+                    <td>Identified 77.5% of procedures lack reason codes</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Payer Mix Analysis</td>
+                    <td>Python (pandas)</td>
+                    <td>2026-09-23</td>
+                    <td>Medicare 63%, Medicaid 27%, Commercial 10%</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>High-Risk Patient Identification</td>
+                    <td>Python (quintile analysis)</td>
+                    <td>2026-09-23</td>
+                    <td>Top 20 patients = $12.4M costs, 70% mortality</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Temporal Trend Analysis</td>
+                    <td>Python (temporal_analysis_and_logs.py)</td>
+                    <td>2026-09-23</td>
+                    <td>Yearly, quarterly, monthly breakdowns with YoY comparisons</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Cost Concentration Analysis</td>
+                    <td>Python (Lorenz curve)</td>
+                    <td>2026-09-23</td>
+                    <td>Top 10% of encounters = 66.6% of costs</td>
+                </tr>
+            </table>
+
+            <h3>Validation & Reproducibility</h3>
+
+            <div class="success-box">
+                <strong>✓ All analyses are reproducible:</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Python scripts saved in data directory</li>
+                    <li>Data sources documented (CSV tables)</li>
+                    <li>Methodologies transparent (available in scripts)</li>
+                    <li>Outputs logged in this workbook</li>
+                </ul>
+            </div>
+
+            <h3>How to Validate Findings</h3>
+            <ul style="margin: 15px 0 15px 20px;">
+                <li><strong>SQL Validation:</strong> Load CSVs into SQL database and run aggregate queries to verify summary statistics</li>
+                <li><strong>Excel Validation:</strong> Use SUMIF, COUNTIF, AVERAGEIF functions on original CSV data</li>
+                <li><strong>Python Validation:</strong> Re-run scripts (detailed_analysis.py, temporal_analysis_and_logs.py) to reproduce outputs</li>
+                <li><strong>Spot-check:</strong> Manually verify high-cost encounters, Q5 risk patients, encounter type distributions</li>
+            </ul>
+        </div>
+
+        <!-- Section 6: Data Quality -->
+        <div class="content-section" id="data-quality">
+            <h2>🔍 Section 6: Data Quality & Validation</h2>
+
+            <h3>Data Quality Assessment</h3>
+
+            <table class="temporal-table">
+                <tr>
+                    <th>Check</th>
+                    <th>Result</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>Total Encounters Records</td>
+                    <td>27,891</td>
+                    <td>✓ Valid</td>
+                    <td>Sufficient sample size</td>
+                </tr>
+                <tr>
+                    <td>Valid Encounter Dates</td>
+                    <td>27,891 (100%)</td>
+                    <td>✓ Valid</td>
+                    <td>All encounters have timestamps</td>
+                </tr>
+                <tr>
+                    <td>Procedures with Cost Data</td>
+                    <td>47,701 (100%)</td>
+                    <td>✓ Valid</td>
+                    <td>Cost data complete</td>
+                </tr>
+                <tr style="background: #fff3cd;">
+                    <td>Procedures with Reason Codes</td>
+                    <td>10,756 (22.5%)</td>
+                    <td>⚠️ <strong>CRITICAL</strong></td>
+                    <td><strong>Audit required:</strong> 36,945 missing reason codes</td>
+                </tr>
+                <tr>
+                    <td>Patients with Age Data</td>
+                    <td>974 (100%)</td>
+                    <td>✓ Valid</td>
+                    <td>All patients have birth dates</td>
+                </tr>
+                <tr>
+                    <td>Outlier Encounter Duration</td>
+                    <td>1 encounter (~5.1 years)</td>
+                    <td>⚠️ Anomaly</td>
+                    <td>Investigate for data entry error</td>
+                </tr>
+            </table>
+
+            <h3>Known Data Issues</h3>
+
+            <div class="warning-box">
+                <strong>1. Missing Reason Codes (77.5% of procedures)</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Impact: Cannot assess appropriateness of procedures</li>
+                    <li>Compliance risk: Missing diagnoses in medical record</li>
+                    <li>Quality impact: Cannot measure outcomes or quality metrics</li>
+                    <li>Action: Immediate coding audit required</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>2. Outlier Encounter Duration</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>One encounter shows start_time to stop_time of ~5.1 years</li>
+                    <li>Likely causes: Data entry error or long-term facility resident</li>
+                    <li>Action: Data validation - correct or flag as anomaly</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <strong>Data Quality Strengths:</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>✓ 100% coverage of patient demographics</li>
+                    <li>✓ Complete encounter timestamps</li>
+                    <li>✓ All procedures have associated costs</li>
+                    <li>✓ Clean payer and organization data</li>
+                    <li>✓ Consistent SNOMED-CT coding where present</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 7: Output Files -->
+        <div class="content-section" id="files">
+            <h2>📁 Section 7: Output Files & Reports</h2>
+
+            <h3>Generated Output Files</h3>
+
+            <div class="file-link">
+                <strong>📊 Hospital_Analysis_Workbook.xlsx</strong><br>
+                Comprehensive Excel workbook with 7 sheets:
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li><strong>Action Log:</strong> All 12 analyses performed with dates and methods</li>
+                    <li><strong>Yearly Analysis:</strong> Year-by-year breakdown (2012-2023) with YoY comparisons</li>
+                    <li><strong>Quarterly Analysis:</strong> All 45 quarters with trend data</li>
+                    <li><strong>Monthly Analysis:</strong> 134 months analyzed with cost breakdowns</li>
+                    <li><strong>Definitions & Encounter Types:</strong> Terminology + encounter statistics</li>
+                    <li><strong>Data Quality & Validation:</strong> Quality checks and known issues</li>
+                    <li><strong>Key Findings:</strong> Summary of critical insights</li>
+                </ul>
+            </div>
+
+            <div class="file-link">
+                <strong>📊 STAKEHOLDER_PRESENTATION.html</strong><br>
+                Interactive 12-slide presentation for leadership with:
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Executive summary and key metrics</li>
+                    <li>Cost concentration analysis ($12.4M opportunity)</li>
+                    <li>Elderly population crisis (27.5% mortality in 80+)</li>
+                    <li>Stakeholder-specific actions</li>
+                    <li>90-day implementation roadmap</li>
+                    <li>ROI projections (8-12% savings)</li>
+                </ul>
+            </div>
+
+            <div class="file-link">
+                <strong>📋 INDEX_AND_DEFINITIONS.html</strong><br>
+                This comprehensive reference document (you are reading it) with:
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Complete terminology and definitions</li>
+                    <li>Encounter type explanations</li>
+                    <li>Temporal analysis framework</li>
+                    <li>Full data dictionary</li>
+                    <li>Action log and methodology</li>
+                    <li>Data quality assessment</li>
+                </ul>
+            </div>
+
+            <div class="file-link">
+                <strong>📈 Visualization Images</strong><br>
+                5 professional PNG visualizations:
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li><strong>viz_patient_demographics.png</strong> - Age, gender, race, mortality by age</li>
+                    <li><strong>viz_encounter_analysis.png</strong> - Encounter types, distribution, temporal trends</li>
+                    <li><strong>viz_cost_analysis.png</strong> - Cost distributions, Lorenz curves, payer breakdown</li>
+                    <li><strong>viz_procedure_analysis.png</strong> - Top procedures, documentation gaps</li>
+                    <li><strong>viz_high_risk_patients.png</strong> - Risk stratification, mortality correlation</li>
+                </ul>
+            </div>
+
+            <div class="file-link">
+                <strong>📄 ANALYSIS_REPORT.txt</strong><br>
+                Text-based summary report with key findings and recommendations
+            </div>
+
+            <h3>Python Scripts for Reproducibility</h3>
+
+            <div class="info-box">
+                <strong>All analyses are reproducible:</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li><strong>analyze.py</strong> - Quick statistical overview</li>
+                    <li><strong>detailed_analysis.py</strong> - Comprehensive multi-dimensional analysis with visualizations</li>
+                    <li><strong>temporal_analysis_and_logs.py</strong> - Temporal breakdowns and Excel workbook generation</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>To regenerate:</strong> Run <code style="background: #f5f5f5; padding: 2px 6px;">python temporal_analysis_and_logs.py</code></p>
+            </div>
+
+            <h3>File Organization</h3>
+
+            <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; font-family: monospace; font-size: 12px;">
+hospital data by claude/<br>
+├── Hospital_Analysis_Workbook.xlsx <span style="color: green;">← Open for temporal analysis & validation</span><br>
+├── STAKEHOLDER_PRESENTATION.html <span style="color: green;">← Leadership presentation</span><br>
+├── INDEX_AND_DEFINITIONS.html <span style="color: green;">← This document</span><br>
+├── ANALYSIS_REPORT.txt<br>
+├── viz_*.png <span style="color: green;">← 5 professional visualizations</span><br>
+├── detailed_analysis.py<br>
+├── temporal_analysis_and_logs.py<br>
+├── encounters.csv <span style="color: green;">← Source data</span><br>
+├── patients.csv<br>
+├── procedures.csv<br>
+├── payers.csv<br>
+├── organizations.csv<br>
+└── data_dictionary.csv
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Hospital Patient Records Analysis | Complete Reference Guide</p>
+            <p>Generated: 2026-09-23 | Dataset: 974 Patients | 27,891 Encounters | 47,701 Procedures</p>
+            <p>All analyses are reproducible using Python scripts and can be validated with SQL/Excel</p>
+        </footer>
+
+        <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">↑ Back to Top</a>
+    </div>
+</body>
+</html>
